@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 08:01:33 by jsoulet           #+#    #+#             */
-/*   Updated: 2023/03/10 08:35:34 by jsoulet          ###   ########.fr       */
+/*   Updated: 2023/03/10 11:18:24 by jsoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 char	*get_next_line(int fd)
 {
 	char			*line;
-	static t_list	*stack;
+	static t_list	*stack[1024];
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	line = NULL;
-	read_stack(fd, &stack);
-	if (!stack)
+	read_stack(fd, &stack[fd]);
+	if (!stack[fd])
 		return (NULL);
-	extract_line(stack, &line);
-	clean_stack(&stack);
+	extract_line(stack[fd], &line);
+	clean_stack(&stack[fd]);
 	if (line[0] == '\0')
 	{
-		free_stack(stack);
-		stack = NULL;
+		free_stack(stack[fd]);
+		stack[fd] = NULL;
 		free(line);
 		return (NULL);
-	}
+	}					
 	return (line);
 }
 

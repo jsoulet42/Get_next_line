@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsoulet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 08:30:09 by jsoulet           #+#    #+#             */
-/*   Updated: 2023/03/10 08:30:31 by jsoulet          ###   ########.fr       */
+/*   Updated: 2023/03/10 11:18:56 by jsoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	generate_line(t_list *stack, char **line)
 	*line = malloc(sizeof(char) * (len + 1));
 }
 
-int	ft_srlen(const char *s)
+int	ft_strlen(const char *s)
 {
 	size_t	i;
 
