@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoulet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jsoulet <jsoulet@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 08:01:33 by jsoulet           #+#    #+#             */
-/*   Updated: 2023/03/10 11:18:24 by jsoulet          ###   ########.fr       */
+/*   Updated: 2023/10/12 17:29:48 by jsoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
 	char			*line;
-	static t_list	*stack[1024];
+	static t_lst	*stack[1024];
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
@@ -31,11 +31,11 @@ char	*get_next_line(int fd)
 		stack[fd] = NULL;
 		free(line);
 		return (NULL);
-	}					
+	}
 	return (line);
 }
 
-void	read_stack(int fd, t_list **stack)
+void	read_stack(int fd, t_lst **stack)
 {
 	char	*buffer;
 	int		r_read;
@@ -58,13 +58,13 @@ void	read_stack(int fd, t_list **stack)
 	}
 }
 
-void	go_to_stack(t_list **stack, char *buffer, int r_read)
+void	go_to_stack(t_lst **stack, char *buffer, int r_read)
 {
-	t_list	*end;
-	t_list	*new_temp;
+	t_lst	*end;
+	t_lst	*new_temp;
 	int		i;
 
-	new_temp = malloc(sizeof(t_list));
+	new_temp = malloc(sizeof(t_lst));
 	if (!new_temp)
 		return ;
 	new_temp->next = NULL;
@@ -87,7 +87,7 @@ void	go_to_stack(t_list **stack, char *buffer, int r_read)
 	end->next = new_temp;
 }
 
-void	extract_line(t_list *stack, char **line)
+void	extract_line(t_lst *stack, char **line)
 {
 	int	i;
 	int	j;
@@ -115,14 +115,14 @@ void	extract_line(t_list *stack, char **line)
 	(*line)[j] = '\0';
 }
 
-void	clean_stack(t_list **stack)
+void	clean_stack(t_lst **stack)
 {
-	t_list	*temp;
-	t_list	*last;
+	t_lst	*temp;
+	t_lst	*last;
 	int		i;
 	int		j;
 
-	temp = malloc(sizeof(t_list));
+	temp = malloc(sizeof(t_lst));
 	if (!stack || !temp)
 		return ;
 	temp->next = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoulet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jsoulet <jsoulet@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 08:02:01 by jsoulet           #+#    #+#             */
-/*   Updated: 2023/03/10 08:26:20 by jsoulet          ###   ########.fr       */
+/*   Updated: 2023/10/12 17:34:10 by jsoulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,27 @@
 typedef struct s_lst
 {
 	char			*content;
-	struct s_list	*next;
+	struct s_lst	*next;
 }				t_lst;
 
 char	*get_next_line(int fd);
 
-int		chearch_endline(t_list *stack);
+int		chearch_endline(t_lst *stack);
 
-void	read_stack(int fd, t_list **stack);
+void	read_stack(int fd, t_lst **stack);
 
-void	go_to_stack(t_list **stack, char *buffer, int r_read);
+void	go_to_stack(t_lst **stack, char *buffer, int r_read);
 
-t_list	*lst_getlast(t_list *stack);
+t_lst	*lst_getlast(t_lst *stack);
 
-int		ft_srlen(const char *s);
+int		ft_strlen(const char *s);
 
-void	extract_line(t_list *stack, char **line);
+void	extract_line(t_lst *stack, char **line);
 
-void	generate_line(t_list *stack, char **line);
+void	generate_line(t_lst *stack, char **line);
 
-void	free_stack(t_list *stack);
+void	free_stack(t_lst *stack);
 
-void	clean_stack(t_list **stack);
+void	clean_stack(t_lst **stack);
 
 #endif
